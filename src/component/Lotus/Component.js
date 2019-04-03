@@ -1,13 +1,14 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import PropTypes from 'prop-types';
 
 import defaultData from './data';
-import { xScale, yScale, path } from './d3';
+import getScales from './d3';
 
 const Lotus = ({ dimension, data }) => {
-  const myXScale = xScale(data.map(({ date }) => date), dimension);
-  const myYScale = yScale(data.map(({ value }) => value), dimension);
-  const line = path(myXScale, myYScale)(data);
+  const [myXScale, myYScale, line] = useMemo(
+    () => getScales({ dimension, data }),
+    [dimension, data],
+  );
   return (
     <svg width={dimension.width} height={dimension.height}>
       <rect width="300" height="100" fill="red" />
