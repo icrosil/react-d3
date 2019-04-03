@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import './App.css';
 import Lotus from './component/Lotus';
 
 class App extends Component {
