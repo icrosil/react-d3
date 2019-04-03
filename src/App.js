@@ -1,11 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './App.css';
-import Lotus from './component/Lotus';
+import TimeLine from './component/TimeLine';
 
 const App = () => (
   <div className="App">
-    <Lotus />
+    <TimeLine />
   </div>
 );
 
