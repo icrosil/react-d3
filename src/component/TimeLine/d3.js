@@ -1,4 +1,4 @@
-import { line, scaleLinear, scaleTime, curveMonotoneX } from 'd3';
+import { area, line, scaleLinear, scaleTime, curveMonotoneX } from 'd3';
 
 const defaultMapper = { x: 'date', y: 'value' };
 
@@ -18,6 +18,17 @@ export const xScale = (xValues, { width }) => {
     .range([0, width]);
 };
 
+export const areaInside = (
+  xScale,
+  yScale,
+  { height, mapper = defaultMapper },
+) =>
+  area()
+    .x(row => xScale(row[mapper.x]))
+    .y1(row => yScale(row[mapper.y]))
+    .y0(height)
+    .curve(curveMonotoneX);
+
 export const path = (xScale, yScale, mapper = defaultMapper) =>
   line()
     .x(row => xScale(row[mapper.x]))
@@ -28,5 +39,6 @@ export default ({ dimension, data, mapper = defaultMapper }) => {
   const xScaled = xScale(data.map(row => row[mapper.x]), dimension);
   const yScaled = yScale(data.map(row => row[mapper.y]), dimension);
   const line = path(xScaled, yScaled)(data);
-  return [xScaled, yScaled, line];
+  const inside = areaInside(xScaled, yScaled, dimension)(data);
+  return [xScaled, yScaled, line, inside];
 };

@@ -3,23 +3,42 @@ import PropTypes from 'prop-types';
 
 import defaultData from './data';
 import getScales from './d3';
+import { colors } from './style';
+import Stripe from '../utils/Stripe';
+import Gradient from '../utils/Gradient';
 
 const Lotus = ({ dimension, data }) => {
-  const [myXScale, myYScale, line] = useMemo(
+  const [xScale, yScale, line, area] = useMemo(
     () => getScales({ dimension, data }),
     [dimension, data],
   );
+  const stripeId = 'stripe';
+  const gradientId = 'gradient';
   return (
-    <svg width={dimension.width} height={dimension.height}>
-      <rect width="300" height="100" fill="red" />
-      <path d={line} stroke="green" strokeWidth={3} fill="transparent" />
+    <svg
+      width={dimension.width}
+      height={dimension.height}
+      style={{ overflow: 'visible' }}
+    >
+      <Stripe color={colors.stripe} id={stripeId} />
+      <Gradient
+        id={gradientId}
+        stops={[
+          { offset: '0%', stopColor: colors.gradientZero },
+          { offset: '100%', stopColor: colors.gradientFull },
+        ]}
+      />
+      <path d={line} stroke={colors.line} strokeWidth={3} fill="transparent" />
+      <path d={area} fill={`url(#${gradientId})`} />
+      <path d={area} fill={`url(#${stripeId})`} />
       {data.map(({ date, value }) => (
         <circle
           key={`${date}_${value}`}
-          cx={myXScale(date)}
-          cy={myYScale(value)}
-          r={3}
-          fill={'yellow'}
+          cx={xScale(date)}
+          cy={yScale(value)}
+          r={4}
+          fill={'white'}
+          stroke={colors.line}
         />
       ))}
     </svg>
@@ -31,7 +50,7 @@ Lotus.propTypes = {
     width: PropTypes.number,
     height: PropTypes.number,
   }).isRequired,
-  data: PropTypes.arrayOf().isRequired,
+  data: PropTypes.arrayOf(PropTypes.shape({})).isRequired,
 };
 
 Lotus.defaultProps = {
