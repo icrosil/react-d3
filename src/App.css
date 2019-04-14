@@ -1,7 +1,14 @@
-.App {
+.App-content {
   text-align: center;
   display: flex;
   flex: 1;
   justify-content: center;
   align-items: center;
+  flex-direction: column;
+}
+
+.App-wrapper {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
 }

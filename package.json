@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@material-ui/core": "^3.9.3",
     "d3": "^5.9.2",
     "dayjs": "^1.8.12",
     "prop-types": "^15.7.2",
@@ -27,6 +28,6 @@
   ],
   "devDependencies": {
     "eslint-plugin-prettier": "^3.0.1",
-    "prettier": "^1.16.4"
+    "prettier": "^1.17.0"
   }
 }
