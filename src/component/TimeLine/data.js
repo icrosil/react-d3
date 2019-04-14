@@ -1,6 +1,6 @@
 import day from 'dayjs';
 
-export const generateData = (times, maxValue = 100) => {
+export const generateData = (times = 10, maxValue = 100) => {
   return Array(times)
     .fill(0)
     .map((_, index) => ({
@@ -9,4 +9,4 @@ export const generateData = (times, maxValue = 100) => {
     }));
 };
 
-export default generateData(10);
+export default generateData();
