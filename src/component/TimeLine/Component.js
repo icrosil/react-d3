@@ -14,7 +14,7 @@ const TimeLine = ({ viewBox }) => {
     width: 400,
   });
   const [xScale, yScale, line, area] = useMemo(
-    () => getScales({ dimension: viewBox, data }),
+    () => getScales({ viewBox, data }),
     [viewBox, data],
   );
   const stripeId = 'stripe';

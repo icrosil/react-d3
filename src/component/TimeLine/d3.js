@@ -35,10 +35,10 @@ export const path = (xScale, yScale, mapper = defaultMapper) =>
     .y(row => yScale(row[mapper.y]))
     .curve(curveMonotoneX);
 
-export default ({ dimension, data, mapper = defaultMapper }) => {
-  const xScaled = xScale(data.map(row => row[mapper.x]), dimension);
-  const yScaled = yScale(data.map(row => row[mapper.y]), dimension);
+export default ({ viewBox, data, mapper = defaultMapper }) => {
+  const xScaled = xScale(data.map(row => row[mapper.x]), viewBox);
+  const yScaled = yScale(data.map(row => row[mapper.y]), viewBox);
   const line = path(xScaled, yScaled)(data);
-  const inside = areaInside(xScaled, yScaled, dimension)(data);
+  const inside = areaInside(xScaled, yScaled, viewBox)(data);
   return [xScaled, yScaled, line, inside];
 };
