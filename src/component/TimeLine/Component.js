@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import defaultData from './data';
 import getScales from './d3';
 import { colors } from './style';
-import Stripe from '../utils/Stripe';
-import Gradient from '../utils/Gradient';
+import Stripe from '../util/Stripe';
+import Gradient from '../util/Gradient';
 
 const TimeLine = ({ viewBox }) => {
   const [data] = useState(defaultData);
