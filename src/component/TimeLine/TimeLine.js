@@ -6,6 +6,7 @@ import getScales from './d3';
 import { colors } from './style';
 import Stripe from '../util/Stripe';
 import Gradient from '../util/Gradient';
+import AxisD3 from '../Axis/AxisD3';
 
 const TimeLine = ({ viewBox }) => {
   const [data] = useState(defaultData);
@@ -53,6 +54,7 @@ const TimeLine = ({ viewBox }) => {
             stroke={colors.line}
           />
         ))}
+        <AxisD3 scale={xScale} translateY={dimension.height} />
       </svg>
     </section>
   );
