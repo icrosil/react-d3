@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
 import * as d3 from 'd3';
-// TODO can we use without parser?
 import reactHtmlParser from 'react-html-parser';
 
 class AxisD3 extends Component {
@@ -9,7 +8,6 @@ class AxisD3 extends Component {
     const { renderASAP } = this.props;
     if (renderASAP) {
       const g = document.createElement('g');
-      // TODO use ref
       this.setRef(g);
       this.renderAxis();
     }
