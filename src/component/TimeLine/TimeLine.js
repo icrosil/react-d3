@@ -6,7 +6,7 @@ import getScales from './d3';
 import { colors } from './style';
 import Stripe from '../util/Stripe';
 import Gradient from '../util/Gradient';
-import AxisHook from '../Axis/AxisHook';
+import AxisReactFirst from '../Axis/AxisReactFirst';
 
 const TimeLine = ({ viewBox }) => {
   const [data] = useState(defaultData);
@@ -54,7 +54,7 @@ const TimeLine = ({ viewBox }) => {
             stroke={colors.line}
           />
         ))}
-        <AxisHook scale={xScale} translateY={dimension.height} renderASAP />
+        <AxisReactFirst scale={xScale} translateY={dimension.height} />
       </svg>
     </section>
   );

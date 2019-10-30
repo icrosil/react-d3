@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import * as PropTypes from 'prop-types';
-import * as d3 from 'd3';
+import { select, axisBottom } from 'd3';
 import reactHtmlParser from 'react-html-parser';
 
 class AxisD3 extends Component {
@@ -29,7 +29,7 @@ class AxisD3 extends Component {
   renderAxis() {
     const { d3Axis, scale } = this.props;
 
-    d3.select(this.axis).call(d3Axis.scale(scale));
+    select(this.axis).call(d3Axis.scale(scale));
   }
 
   render() {
@@ -56,7 +56,7 @@ AxisD3.propTypes = {
 };
 
 AxisD3.defaultProps = {
-  d3Axis: d3.axisBottom(),
+  d3Axis: axisBottom(),
   translateX: 0,
   translateY: 0,
 };

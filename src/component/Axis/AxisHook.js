@@ -1,22 +1,19 @@
 import React, { useRef, useEffect } from 'react';
 import * as PropTypes from 'prop-types';
-// TODO do we need all d3 really?
-import * as d3 from 'd3';
+import { select, axisBottom } from 'd3';
 import reactHtmlParser from 'react-html-parser';
 
 const AxisHook = ({ d3Axis, scale, translateX, translateY, renderASAP }) => {
-  const ref = React.useRef(
-    renderASAP ? document.createElement('g') : undefined,
-  );
-  React.useEffect(() => {
-    d3.select(ref.current).call(d3Axis.scale(scale));
+  const ref = useRef(renderASAP ? document.createElement('g') : undefined);
+  useEffect(() => {
+    select(ref.current).call(d3Axis.scale(scale));
   }, [d3Axis, scale]);
   if (renderASAP) {
     ref.current.setAttribute(
       'transform',
       `translate(${translateX}, ${translateY})`,
     );
-    d3.select(ref.current).call(d3Axis.scale(scale));
+    select(ref.current).call(d3Axis.scale(scale));
     const [axis] = reactHtmlParser(ref.current.outerHTML);
     return axis;
   }
@@ -31,7 +28,7 @@ AxisHook.propTypes = {
 };
 
 AxisHook.defaultProps = {
-  d3Axis: d3.axisBottom(),
+  d3Axis: axisBottom(),
   translateX: 0,
   translateY: 0,
 };
