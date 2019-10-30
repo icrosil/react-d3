@@ -5,9 +5,10 @@ import reactHtmlParser from 'react-html-parser';
 
 class AxisD3 extends Component {
   componentWillMount() {
-    const { renderASAP } = this.props;
+    const { renderASAP, translateX, translateY } = this.props;
     if (renderASAP) {
       const g = document.createElement('g');
+      g.setAttribute('transform', `translate(${translateX}, ${translateY})`);
       this.setRef(g);
       this.renderAxis();
     }

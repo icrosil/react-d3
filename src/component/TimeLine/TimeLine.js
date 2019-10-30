@@ -54,7 +54,7 @@ const TimeLine = ({ viewBox }) => {
             stroke={colors.line}
           />
         ))}
-        <AxisD3 scale={xScale} translateY={dimension.height} />
+        <AxisD3 scale={xScale} translateY={dimension.height} renderASAP />
       </svg>
     </section>
   );
